@@ -55,8 +55,8 @@ describe('Hotel UTC', function() {
   it('should return true with enough room', function() {
     const hotel = new Hotel(2);
 
-    const arrivals = [1, 3, 5, 9, 11];
-    const departures = [2, 4, 10, 11, 12];
+    const arrivals = [1, 3, 9, 9, 11];
+    const departures = [2, 4, 9, 12, 14];
 
     const actual = hotel.booking(arrivals, departures);
     assert.equal(actual, true);

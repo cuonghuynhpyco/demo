@@ -26,6 +26,7 @@ module.exports = class Hotel {
       }
 
       let bookedRoom = 0;
+      let booked = [];
       arrivals.map((arrival, i) => {
         const departure = departures[i];
         if (arrival > departure) {
@@ -35,6 +36,11 @@ module.exports = class Hotel {
         if (i == 0) {
           return;
         }
+
+        if (booked.includes(arrival)) {
+          bookedRoom ++;
+        }
+        booked.push(arrival);
         const prevDeparture = departures[i - 1];
         if (arrival < prevDeparture) {
           bookedRoom ++;
