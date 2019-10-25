@@ -1,0 +1,62 @@
+/**
+ * Picture
+ */
+module.exports = class Picture {
+  /**
+   * init Picture
+   * @param {Array} grid
+   */
+  constructor(grid) {
+    this._grid = grid;
+  }
+
+  /**
+   * rotates
+   * @param {Number} time
+   * @return {Array}
+   */
+  rotates(time = 1) {
+    try {
+      let matrix = this._grid;
+      // TODO: Optimized by calculating the position instead of using the loop
+      for (let index = 0; index < time; index++) {
+        matrix = this.rotate(matrix);
+      }
+
+      return matrix;
+    } catch (error) {
+      return [];
+    }
+  }
+
+  /**
+   * rotate
+   * @param {Array} matrix
+   * @return {Array}
+   */
+  rotate(matrix) {
+    try {
+      if (!Array.isArray(matrix)) {
+        throw new Error('matrix_is_invalid');
+      }
+      const n = matrix.length;
+      const resutls = [];
+      matrix.map((item, i) => {
+        for (let index = 0; index < n; index++) {
+          const row = Math.abs(index);
+          const col = Math.abs(n - i - 1);
+          const val = item[index];
+          let element = resutls[row];
+          if (!element) {
+            element = resutls[row] = [];
+          }
+          element[col] = val;
+        }
+      });
+
+      return resutls;
+    } catch (error) {
+      throw error;
+    }
+  }
+};

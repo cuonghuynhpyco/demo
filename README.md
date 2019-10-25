@@ -1,6 +1,6 @@
 # Problems
 ## Rotate picture
-Background:
+### Background:
 Assume you are implementing a Photo Gallery app. You are requested to help with a feature to rotate the photo on user request. 
 
 For simplicity, let’s assume the photo to be 2D square grid n * n (rows * columns) and each pixel can store 8 bits values (ranging between 0 to 255)
@@ -8,7 +8,7 @@ For simplicity, let’s assume the photo to be 2D square grid n * n (rows * colu
 Rotating once should rotate the pixel elements by 90 degrees clockwise.
 This rotation operation can be called any number of times. 
 
-Todo:
+### Todo:
 Implement a library function/ module which satisfies the requirement with below input and output 
 
 Input:
@@ -24,18 +24,25 @@ Ex: Rotation once (K = 1)
 
 Input:
  1. grid = [
-     [0, 16,  255],
-     [8, 128,  32],
-     [0,    0,     0]	
+     [0, 16, 255],
+     [8, 128, 32],
+     [0, 0,  0]	
 ]
 2. K = 1
 Output:
 
 [
 	[0,   8,     0],
-	[0, 128,  16],
-            [0, 32,  255]
+  [0, 128,  16],
+  [0, 32,  255]
 ]
+
+### Solution
+Because we have n * n matrix, I will loop the matrix and find the next position of current node value. With my solution, it will help save memories because of dont loop too much.
+eg) with matrix 3 x 3
+with position [0,0] after rotated the new position will be [0,3].
+
+But current my solution is not good at loop times of rotated. I used a loop the times. If we can calculating the next position with times, I think this is the best one.
 
 ## Hotel Reservation
 
@@ -57,3 +64,6 @@ Inputs:
 - K = 1
 Output: false. At day = 5, there are 2 guests in the hotel. But we have only one room.
 Please specify time/ memory complexity in terms of arrivals, departure, K
+
+### Solution 
+I will compare arrival with the previous departure and counted when arrival < previous departure. It means the guest not checkout yet. Then I will compare count with a number of the room.
