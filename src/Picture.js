@@ -20,7 +20,7 @@ module.exports = class Picture {
       let matrix = this._grid;
       // TODO: Optimized by calculating the position instead of using the loop
       for (let index = 0; index < time; index++) {
-        matrix = this.rotatebk(matrix);
+        matrix = this.rotate(matrix);
       }
 
       return matrix;
@@ -39,10 +39,12 @@ module.exports = class Picture {
       if (!Array.isArray(matrix)) {
         throw new Error('matrix_is_invalid');
       }
+      const resutls = [];
       const n = matrix.length - 1;
       let col = matrix.length - 1;
-      const resutls = [];
       let row = 0;
+      let nextCol;
+      let val;
       let times = matrix.length * matrix.length;
       while (times > 0) {
         times--;
@@ -50,8 +52,8 @@ module.exports = class Picture {
           row++;
           col = n;
         }
-        const val = matrix[col][row];
-        const nextCol = Math.abs(n - col);
+        val = matrix[col][row];
+        nextCol = Math.abs(n - col);
         if (!resutls[row]) {
           resutls[row] = [];
         }
