@@ -26,27 +26,25 @@ module.exports = class Hotel {
       }
 
       let bookedRoom = 0;
-      let booked = [];
+      const booked = {};
       arrivals.map((arrival, i) => {
         const departure = departures[i];
         if (arrival > departure) {
-          errorBookingRoom = true;
           throw new Error('arrival > departure');
         }
-        if (i == 0) {
-          return;
-        }
 
-        if (booked.includes(arrival)) {
-          bookedRoom ++;
-        }
-        booked.push(arrival);
-        const prevDeparture = departures[i - 1];
-        if (arrival < prevDeparture) {
-          bookedRoom ++;
+        for (let index = arrival; index <= departure; index++) {
+          if (!booked[index]) {
+            booked[index] = 1;
+          } else {
+            booked[index]++;
+          }
+
+          if (bookedRoom < booked[index]) {
+            bookedRoom = booked[index];
+          }
         }
       });
-
       if (bookedRoom > this._rooms) {
         throw new Error('not enough rooms for booking');
       }

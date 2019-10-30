@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "lint": "./node_modules/.bin/eslint --ext .js . --fix",
-    "test": "mocha --timeout 100000 --max-old-space-size=20000"
+    "test": "mocha --timeout 100000 --max-old-space-size=20000",
+    "coverage": "nyc npm run test"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

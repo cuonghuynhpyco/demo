@@ -69,35 +69,4 @@ module.exports = class Picture {
       throw error;
     }
   }
-
-  /**
-   * rotatebk
-   * @param {Array} matrix
-   * @return {Array}
-   */
-  rotatebk(matrix) {
-    try {
-      if (!Array.isArray(matrix)) {
-        throw new Error('matrix_is_invalid');
-      }
-      const n = matrix.length;
-      const resutls = [];
-      matrix.map((item, i) => {
-        for (let index = 0; index < n; index++) {
-          const row = Math.abs(index);
-          const col = Math.abs(n - i - 1);
-          const val = item[index];
-          let element = resutls[row];
-          if (!element) {
-            element = resutls[row] = [];
-          }
-          element[col] = val;
-        }
-      });
-
-      return resutls;
-    } catch (error) {
-      throw error;
-    }
-  }
 };
